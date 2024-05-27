@@ -2,20 +2,19 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             AppTheme {
                 Surface(
@@ -35,8 +34,6 @@ fun WebViewScreen() {
         factory = { context ->
             WebView(context).apply {
                 webViewClient = HealthConnectWebViewClient(context) // 변경된 부분
-                settings.javaScriptEnabled = true
-//                addJavascriptInterface(webViewClient, "HealthConnect") // JavaScript 인터페이스 추가
                 loadUrl("file:///android_asset/web.html") // 로컬 HTML 파일 사용 권장
             }
         },
