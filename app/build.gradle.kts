@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.myapplication"
-        minSdk = 34
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -66,7 +66,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("androidx.health.connect:connect-client:1.1.0-alpha07")
-    implementation("androidx.health.connect:connect-client-ui:1.1.0-alpha07")
+    implementation("androidx.health.connect:connect-client:1.1.0-alpha02")
+//    implementation("androidx.health.connect:connect-client-ui:1.1.0-alpha07")
 
 }
