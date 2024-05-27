@@ -66,6 +66,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("androidx.webkit:webkit:1.8.0")
     implementation("androidx.health.connect:connect-client:1.1.0-alpha02")
 //    implementation("androidx.health.connect:connect-client-ui:1.1.0-alpha07")
 
