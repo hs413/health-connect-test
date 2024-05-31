@@ -4,13 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.health.connect.client.HealthConnectClient
-import androidx.health.connect.client.records.StepsRecord
-import androidx.health.connect.client.request.ReadRecordsRequest
-import androidx.health.connect.client.time.TimeRangeFilter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.time.Instant
 
 class HealthConnectManager(private val context: Context) {
 
