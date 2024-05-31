@@ -16,6 +16,16 @@ import com.example.health.ui.theme.HealthTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val healthConnectManager = HealthConnectManager(applicationContext)
+
+        if (!healthConnectManager.getSdkStatus()) return;
+
+        val connectClient = healthConnectManager.getConnectClient();
+
+        val dd = HealthDataRecords(connectClient)
+
+
+
         enableEdgeToEdge()
         setContent {
             HealthTheme {
