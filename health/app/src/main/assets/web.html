@@ -8,11 +8,31 @@
 <body>
 <h1>Health Connect Steps</h1>
 <p id="steps"> </p>
+<p id="permit"> </p>
+<p id="insert"> </p>
+
+<button onclick="insert()">insert</button>
+<!--<button onclick="permit()">permit</button>-->
+<button onclick="getData()">read</button>
 
 <script type="text/javascript">
 
+    function insert() {
+        document.getElementById("insert").innerText = "insert: ";
+        HealthConnect.insert()
+    }
+
+    function permit() {
+        document.getElementById("permit").innerText = "permit: ";
+        HealthConnect.checkPermission()
+    }
+
+    function getData() {
+        document.getElementById("steps").innerText = "Steps: ";
+        HealthConnect.getDataRecords()
+    }
+
     function showSteps(steps) {
-        HealthConnect.getDataRecords();
         document.getElementById("steps").innerText = "Steps: " + steps;
     }
 

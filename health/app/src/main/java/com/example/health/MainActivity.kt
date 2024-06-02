@@ -12,6 +12,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.health.connect.client.PermissionController
+import androidx.health.connect.client.permission.HealthPermission
+import androidx.health.connect.client.records.HeartRateRecord
+import androidx.health.connect.client.records.StepsRecord
 import com.example.health.ui.theme.HealthTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,18 +23,36 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val healthConnectManager = HealthConnectManager(applicationContext)
 
-        if (!healthConnectManager.getSdkStatus()) return;
+        if (!healthConnectManager.getSdkStatus()) return
+        /*val PERMISSIONS =
+            setOf(
+                HealthPermission.getReadPermission(HeartRateRecord::class),
+                HealthPermission.getWritePermission(HeartRateRecord::class),
+                HealthPermission.getReadPermission(StepsRecord::class),
+                HealthPermission.getWritePermission(StepsRecord::class)
+            )
+        val requestPermissionActivityContract = PermissionController.createRequestPermissionResultContract()
 
+        val requestPermissions = registerForActivityResult(requestPermissionActivityContract) { granted ->
+            if (granted.containsAll(PERMISSIONS)) {
+                println("permitted")
+                // Permissions successfully granted
+            } else {
+                println("NOOOOOOO")
+                // Lack of required permissions
+            }
+        }*/
         setContentView(R.layout.activity_main)
         val myWebView: WebView = findViewById(R.id.webview)
         val connectClient = healthConnectManager.getConnectClient()
-        val healthClient = HealthClient(connectClient, myWebView)
+        val healthClient = HealthClient(connectClient, myWebView/*, requestPermissions*/)
 
         myWebView.settings.javaScriptEnabled = true
         myWebView.settings.domStorageEnabled = true
         myWebView.webViewClient = HealthWebViewClient(healthClient)
         myWebView.addJavascriptInterface(myWebView.webViewClient, "HealthConnect")
         myWebView.loadUrl("file:///android_asset/web.html")
+
 
 //        enableEdgeToEdge()
 //        setContent {
