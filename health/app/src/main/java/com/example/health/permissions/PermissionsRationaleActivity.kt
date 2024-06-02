@@ -1,4 +1,4 @@
-package com.example.health
+package com.example.health.permissions
 
 import android.os.Bundle
 import android.webkit.WebResourceRequest

@@ -2,21 +2,10 @@ package com.example.health
 
 import android.os.Bundle
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.health.connect.client.PermissionController
-import androidx.health.connect.client.permission.HealthPermission
-import androidx.health.connect.client.records.HeartRateRecord
-import androidx.health.connect.client.records.StepsRecord
-import com.example.health.ui.theme.HealthTheme
+import com.example.health.health.HealthClient
+import com.example.health.health.HealthConnectManager
+import com.example.health.health.HealthWebViewClient
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +34,7 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.activity_main)
         val myWebView: WebView = findViewById(R.id.webview)
         val connectClient = healthConnectManager.getConnectClient()
-        val healthClient = HealthClient(connectClient, myWebView/*, requestPermissions*/)
+        val healthClient = HealthClient(applicationContext, connectClient, myWebView/*, requestPermissions*/)
 
         myWebView.settings.javaScriptEnabled = true
         myWebView.settings.domStorageEnabled = true
