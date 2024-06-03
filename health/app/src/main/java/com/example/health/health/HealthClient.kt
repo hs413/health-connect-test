@@ -5,6 +5,10 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.health.connect.client.HealthConnectClient
+import androidx.health.connect.client.records.ExerciseLap
+import androidx.health.connect.client.records.ExerciseSessionRecord
+import androidx.health.connect.client.records.HeartRateRecord
+import androidx.health.connect.client.records.SpeedRecord
 import androidx.health.connect.client.records.StepsRecord
 import androidx.health.connect.client.request.ReadRecordsRequest
 import androidx.health.connect.client.time.TimeRangeFilter
@@ -60,6 +64,40 @@ class HealthClient(private val context: Context, private val healthConnectClient
         } catch (e: Exception) {
             // Run error handling here
         }
+    }
+
+    suspend fun getExercise() {
+        val endTime = Instant.now()
+        val startTime = endTime.minusSeconds(12 * 60 * 60) // 1주일 전
+        val response =
+            healthConnectClient.readRecords(
+                ReadRecordsRequest(
+                    ExerciseSessionRecord::class,
+                    timeRangeFilter = TimeRangeFilter.between(startTime, endTime),
+                )
+            ).records.filter{
+                // 74 = 풀 수영
+                it.exerciseType.equals(74)
+            }
+
+        for (exerciseRecord in response) {
+            val heartRateRecords =
+                healthConnectClient
+                    .readRecords(
+                        ReadRecordsRequest<SpeedRecord>(
+                            timeRangeFilter =
+                            TimeRangeFilter.between(
+                                exerciseRecord.startTime,
+                                exerciseRecord.endTime
+                            )
+                        )
+                    )
+                    .records
+        }
+
+       /* withContext(Dispatchers.Main) {
+            RetrofitInstance.sendDataToServer(stepsDataList, context)
+        }*/
     }
 
     /*suspend fun checkPermissionsAndRun() {

@@ -31,4 +31,12 @@ class HealthWebViewClient(private val healthClient: HealthClient): WebViewClient
             healthClient.insertSteps()
         }
     }
+
+    @JavascriptInterface
+    fun getExercise() {
+        println("exercise")
+        CoroutineScope(Dispatchers.IO).launch {
+            healthClient.getExercise()
+        }
+    }
 }

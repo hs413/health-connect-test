@@ -14,6 +14,7 @@
 <button onclick="insert()">insert</button>
 <!--<button onclick="permit()">permit</button>-->
 <button onclick="getData()">read</button>
+<button onclick="exercise()">exercise</button>
 
 <script type="text/javascript">
 
@@ -25,6 +26,10 @@
     function permit() {
         document.getElementById("permit").innerText = "permit: ";
         HealthConnect.checkPermission()
+    }
+
+    function exercise() {
+        HealthConnect.getExercise()
     }
 
     function getData() {
