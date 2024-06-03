@@ -7,7 +7,7 @@
 
 ### ngrok
 - 안드로이드와 API 연동 테스트 시 localhost로 테스트 불가능, https를 사용해야 함
-- ngrok를 사용해서 임의이 https 주소를 얻을 수 있음
+- ngrok를 사용해서 임의의 https 주소를 얻을 수 있음
 - 참고: https://ngrok.com/download
 
 ## 테스트 방법
